@@ -105,8 +105,8 @@ extension ImageCollectionViewController: UICollectionViewDelegate {
         .anyGesture(.longPress())
         .when(.recognized)
         .subscribe { _ in
-          let isOverlayOn = try? !cell.isOverlayOn.value()
-          cell.isOverlayOn.on(.next(isOverlayOn ?? false))
+          let isOverlayOn = !cell.isOverlayOn.value
+          cell.isOverlayOn.accept(isOverlayOn)
         }
         .disposed(by: self.disposeBag)
       

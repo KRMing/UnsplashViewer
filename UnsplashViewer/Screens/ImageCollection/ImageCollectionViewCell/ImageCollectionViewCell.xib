@@ -26,7 +26,23 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1m-pm-MI1">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRQ-vU-uLa">
+                                        <rect key="frame" x="100" y="125" width="100" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="NkF-8N-upS"/>
+                                            <constraint firstAttribute="width" constant="100" id="rJa-7Z-pYW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.6478794642857143" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="yRQ-vU-uLa" firstAttribute="centerX" secondItem="f1m-pm-MI1" secondAttribute="centerX" id="bgw-ef-WDj"/>
+                                    <constraint firstItem="yRQ-vU-uLa" firstAttribute="centerY" secondItem="f1m-pm-MI1" secondAttribute="centerY" id="uTF-0o-bwx"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -52,6 +68,7 @@
             </constraints>
             <connections>
                 <outlet property="imageView" destination="Ghe-oJ-nIn" id="WFk-HX-pXf"/>
+                <outlet property="likesLabel" destination="yRQ-vU-uLa" id="5b9-Sd-sPE"/>
                 <outlet property="overlayView" destination="f1m-pm-MI1" id="6B2-sh-wYf"/>
                 <outlet property="view" destination="haE-oN-gwh" id="xnb-EZ-O0Z"/>
             </connections>
