@@ -14,9 +14,9 @@ struct UserDTO: Codable {
   let profileImage: ProfileImageDTO
   
   enum CodingKeys: String, CodingKey {
-    case id = "id"
-    case username = "username"
-    case name = "name"
+    case id
+    case username
+    case name
     case profileImage = "profile_image"
   }
 }

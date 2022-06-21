@@ -8,9 +8,8 @@
 import Foundation
 
 struct ImageDTO: Codable {
-  /// TEMP CODE
   let id: String
-  let creationDate: Date
+  let date: Date
   let width: Int
   let height: Int
   let colorInHex: String
@@ -22,27 +21,27 @@ struct ImageDTO: Codable {
   let imageURLs: ImageURLsDTO
   
   enum CodingKeys: String, CodingKey {
-    case id = "id"
-    case creationDate = "created_at"
-    case width = "width"
-    case height = "height"
+    case id
+    case date = "created_at"
+    case width
+    case height
     case colorInHex = "color"
     case blurHash = "blur_hash"
-    case likes = "likes"
-    case description = "description"
-    case user = "user"
+    case likes
+    case description
+    case user
     case profileImage = "profile_image"
     case imageURLs = "urls"
   }
   
   init(from decoder: Decoder) throws {
     let keys = try decoder.container(keyedBy: CodingKeys.self)
-    let creationDateString = try keys.decode(String.self, forKey: .creationDate)
+    let dateString = try keys.decode(String.self, forKey: .date)
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = AppConstants.serverDateFormat
     
     self.id = try keys.decode(String.self, forKey: .id)
-    self.creationDate = dateFormatter.date(from: creationDateString)!
+    self.date = dateFormatter.date(from: dateString)!
     self.width = try keys.decode(Int.self, forKey: .width)
     self.height = try keys.decode(Int.self, forKey: .height)
     self.colorInHex = try keys.decode(String.self, forKey: .colorInHex)
@@ -55,7 +54,7 @@ struct ImageDTO: Codable {
   }
   
   public func asDomainModel() -> Image {
-    return Image(id: self.id)
+    return Image(id: id, date: date, imageURL: imageURLs.thumbnail, likes: likes)
   }
 }
 
@@ -67,10 +66,10 @@ struct ImageURLsDTO: Codable {
   let thumbnail: String
   
   enum CodingKeys: String, CodingKey {
-    case raw = "raw"
-    case full = "full"
-    case regular = "regular"
-    case small = "small"
+    case raw
+    case full
+    case regular
+    case small
     case thumbnail = "thumb"
   }
 }

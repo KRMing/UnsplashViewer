@@ -6,22 +6,29 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ImageCollectionViewCell: UICollectionViewCell {
   static public let className = String(describing: ImageCollectionViewCell.self)
   
   @IBOutlet weak var view: UIView!
-  @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var overlayView: UIView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
     
-    // Initialization code
+    /// Initialization code
     view.layer.borderColor = UIColor.black.cgColor
     view.layer.borderWidth = 0
+    
+    overlayView.isHidden = true
   }
   
   public func bind(to data: ImageCollection) {
-    titleLabel.text = String(data.image.id)
+    imageView.kf.setImage(
+      with: URL(string: data.image.imageURL),
+      options: [.transition(.fade(0.2))]
+    )
   }
 }

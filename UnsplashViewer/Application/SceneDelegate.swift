@@ -23,8 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     ignite
       .do(onCompleted: { [unowned self] in
-        let rootViewController = self.getRootViewController()
-        self.setWindow(windowScene: windowScene, rootViewController: rootViewController)
+        let rootViewController = getRootViewController()
+        setWindow(windowScene: windowScene, rootViewController: rootViewController)
       })
       .subscribe()
       .disposed(by: disposeBag)
@@ -70,7 +70,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Use this method to save data, release shared resources, and store enough scene-specific state information
     // to restore the scene back to its current state.
   }
-
-
 }
-

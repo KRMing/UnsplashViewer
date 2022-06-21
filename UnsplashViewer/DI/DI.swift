@@ -15,7 +15,7 @@ class DI {
   private let container: Container = Container()
 
   private init() {
-    self.registerDependencies()
+    registerDependencies()
   }
   
   public func find<T>() -> T {

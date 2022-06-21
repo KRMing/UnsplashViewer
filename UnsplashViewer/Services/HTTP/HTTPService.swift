@@ -32,8 +32,8 @@ final class HTTPService {
     queryParameters: [String: Any]? = nil
   ) -> Observable<T> {
     let urlPath = "\(baseUrl)" + ((path != nil) ? "\(path!)/" : "")
-    return self.session.rx.request(.get, urlPath, parameters: queryParameters)
-      .observeOn(self.scheduler)
+    return session.rx.request(.get, urlPath, parameters: queryParameters)
+      .observeOn(scheduler)
       .validate(statusCode: 200 ..< 300)
       .validate(contentType: ["application/json"])
       .data()
@@ -41,6 +41,5 @@ final class HTTPService {
         let decoded = try JSONDecoder().decode(T.self, from: data)
         return Observable.just(decoded)
       }
-      .debug()
   }
 }
