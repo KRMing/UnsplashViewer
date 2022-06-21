@@ -13,7 +13,6 @@ class ImageCollectionViewModel {
   let numberOfCellsPerRow = 3
   let imageRepository: ImageRepository = DI.injector.find()
   
-  var disposeBag = DisposeBag()
   var dataSource: ImageCollectionDataSource?
   
   public func getImages() -> Driver<[Image]> {

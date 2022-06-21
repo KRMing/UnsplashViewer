@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 import Kingfisher
 
 class ImageCollectionViewCell: UICollectionViewCell {
@@ -15,14 +16,15 @@ class ImageCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var overlayView: UIView!
   
+  private let disposeBag = DisposeBag()
+  public let isOverlayOn = BehaviorSubject<Bool>(value: false)
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     
     /// Initialization code
     view.layer.borderColor = UIColor.black.cgColor
     view.layer.borderWidth = 0
-    
-    overlayView.isHidden = true
   }
   
   public func bind(to data: ImageCollection) {
@@ -30,5 +32,12 @@ class ImageCollectionViewCell: UICollectionViewCell {
       with: URL(string: data.image.imageURL),
       options: [.transition(.fade(0.2))]
     )
+    
+    isOverlayOn
+      .asDriver(onErrorJustReturn: false)
+      .drive { [weak self] isOverlayOn in
+        self?.overlayView.isHidden = !isOverlayOn
+      }
+      .disposed(by: disposeBag)
   }
 }

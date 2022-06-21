@@ -9,11 +9,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import RxGesture
 
 class ImageCollectionViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
   
   let viewModel: ImageCollectionViewModel = DI.injector.find()
+  var disposeBag = DisposeBag()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -71,7 +73,7 @@ class ImageCollectionViewController: UIViewController {
         )]
       }
       .drive(collectionView.rx.items(dataSource: viewModel.dataSource!))
-      .disposed(by: viewModel.disposeBag)
+      .disposed(by: disposeBag)
   }
 }
 
@@ -79,7 +81,7 @@ extension ImageCollectionViewController: UICollectionViewDelegate {
   // - MARK: Collection View Initialization
   private func setupCollectionView() {
     collectionView.rx.setDelegate(self)
-      .disposed(by: viewModel.disposeBag)
+      .disposed(by: disposeBag)
     collectionView.register(
       UINib(nibName: ImageCollectionViewCell.className, bundle: nil),
       forCellWithReuseIdentifier: ImageCollectionViewCell.className
@@ -88,16 +90,25 @@ extension ImageCollectionViewController: UICollectionViewDelegate {
   
   private func setupDataSource() {
     viewModel.dataSource = ImageCollectionDataSource {
-      dataSource, collectionView, indexPath, model -> UICollectionViewCell in
+      [weak self] dataSource, collectionView, indexPath, model -> UICollectionViewCell in
       let defaultCell = UICollectionViewCell()
       guard
+        let self = self,
         let cell = collectionView.dequeueReusableCell(
           withReuseIdentifier: String(describing: ImageCollectionViewCell.self),
           for: indexPath
         ) as? ImageCollectionViewCell
       else { return defaultCell }
-      
+    
       cell.bind(to: model)
+      cell.rx
+        .anyGesture(.longPress())
+        .when(.recognized)
+        .subscribe { _ in
+          let isOverlayOn = try? !cell.isOverlayOn.value()
+          cell.isOverlayOn.on(.next(isOverlayOn ?? false))
+        }
+        .disposed(by: self.disposeBag)
       
       return cell
     }
