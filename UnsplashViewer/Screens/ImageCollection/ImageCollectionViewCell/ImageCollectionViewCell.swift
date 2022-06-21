@@ -22,6 +22,6 @@ class ImageCollectionViewCell: UICollectionViewCell {
   }
   
   public func bind(to data: ImageCollection) {
-    titleLabel.text = String(data.image.value)
+    titleLabel.text = String(data.image.id)
   }
 }

@@ -34,13 +34,13 @@ final class HTTPService {
     let urlPath = "\(baseUrl)" + ((path != nil) ? "\(path!)/" : "")
     return self.session.rx.request(.get, urlPath, parameters: queryParameters)
       .observeOn(self.scheduler)
-      .debug()
       .validate(statusCode: 200 ..< 300)
-      .validate(contentType: ["text/json"])
+      .validate(contentType: ["application/json"])
       .data()
       .flatMap { data -> Observable<T> in
         let decoded = try JSONDecoder().decode(T.self, from: data)
         return Observable.just(decoded)
       }
+      .debug()
   }
 }

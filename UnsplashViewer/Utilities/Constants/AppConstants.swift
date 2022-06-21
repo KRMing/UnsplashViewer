@@ -8,5 +8,5 @@
 import Foundation
 
 class AppConstants {
-  
+  public static let serverDateFormat: String = "yyyy-MM-dd'T'HH:mm:ssZ"
 }

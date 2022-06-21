@@ -61,12 +61,12 @@ class ImageCollectionViewController: UIViewController {
   }
   
   private func bind() {
-    viewModel.dataFromApi
+    viewModel.getImages()
       .map {
         [ImageCollectionSection(
           identity: "0",
           items: $0.map {
-            ImageCollection(identity: String($0.value), image: $0)
+            ImageCollection(identity: $0.id, image: $0)
           }
         )]
       }

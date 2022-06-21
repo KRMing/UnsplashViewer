@@ -8,10 +8,9 @@
 import Foundation
 
 class Image {
-  /// TEMP CODE
-  let value: Int
+  let id: String
 
-  init(value: Int) {
-    self.value = value
+  init(id: String) {
+    self.id = id
   }
 }

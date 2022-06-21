@@ -7,15 +7,17 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class ImageCollectionViewModel {
   let numberOfCellsPerRow = 3
+  let imageRepository: ImageRepository = DI.injector.find()
   
   var disposeBag = DisposeBag()
   var dataSource: ImageCollectionDataSource?
   
-  /// TEMP CODE
-  let dataFromApi = Observable.just(Array(0...98))
-    .map { $0.map { Image(value: $0) } }
-    .asDriver(onErrorJustReturn: [])
+  public func getImages() -> Driver<[Image]> {
+    return imageRepository.getImages()
+      .asDriver(onErrorJustReturn: [])
+  }
 }
