@@ -1,0 +1,83 @@
+PODS:
+  - Alamofire (4.9.1)
+  - Differentiator (3.1.0)
+  - Kingfisher (4.10.1)
+  - RxAlamofire (4.4.1):
+    - RxAlamofire/Core (= 4.4.1)
+  - RxAlamofire/Core (4.4.1):
+    - Alamofire (~> 4.8)
+    - RxSwift (~> 4.5)
+  - RxCocoa (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxGesture (2.2.0):
+    - RxCocoa (~> 4.5)
+    - RxSwift (~> 4.5)
+  - RxKingfisher (0.3.1):
+    - Kingfisher (~> 4)
+    - RxCocoa (~> 4.3)
+    - RxSwift (~> 4.3)
+  - RxSwift (4.5.0)
+  - RxSwiftExt (3.4.0):
+    - RxSwiftExt/Core (= 3.4.0)
+    - RxSwiftExt/RxCocoa (= 3.4.0)
+  - RxSwiftExt/Core (3.4.0):
+    - RxSwift (~> 4.0)
+  - RxSwiftExt/RxCocoa (3.4.0):
+    - RxCocoa (~> 4.0)
+    - RxSwiftExt/Core
+  - SwiftLint (0.47.1)
+  - Swinject (2.7.1)
+  - SwinjectAutoregistration (2.8.1):
+    - Swinject (= 2.7.1)
+
+DEPENDENCIES:
+  - RxAlamofire
+  - RxCocoa
+  - RxDataSources
+  - RxGesture
+  - RxKingfisher
+  - RxSwift
+  - RxSwiftExt
+  - SwiftLint
+  - Swinject
+  - SwinjectAutoregistration
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Differentiator
+    - Kingfisher
+    - RxAlamofire
+    - RxCocoa
+    - RxDataSources
+    - RxGesture
+    - RxKingfisher
+    - RxSwift
+    - SwiftLint
+  trunk:
+    - Alamofire
+    - RxSwiftExt
+    - Swinject
+    - SwinjectAutoregistration
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  RxAlamofire: ed65f451f5a9a59419b0b9e705043dc01410edd9
+  RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
+  RxGesture: c1b7bf17166b0ef9d642a9510f8bac5785f18990
+  RxKingfisher: d79612e7a6cab0b67d6e9b63fc1572fccc825afb
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
+  SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
+  Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
+  SwinjectAutoregistration: e83e362da3ca9c64a68290e89efbc40e378dff12
+
+PODFILE CHECKSUM: 4abb0a9f9ed471c47044ff56a4e2b55634cf2cfd
+
+COCOAPODS: 1.11.3
