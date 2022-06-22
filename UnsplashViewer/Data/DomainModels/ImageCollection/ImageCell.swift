@@ -1,5 +1,5 @@
 //
-//  Image.swift
+//  ImageCell.swift
 //  UnsplashViewer
 //
 //  Created by Ming on 2022/06/20.
@@ -8,11 +8,11 @@
 import Foundation
 
 struct ImageCell: Equatable {
-  let id: String
-  let date: Date
-  let thumbnailURL: String
-  let likes: Int
-  let isOverlayOn: Bool
+  public let id: String
+  public let date: Date
+  public let thumbnailURL: String
+  public let likes: Int
+  public let isOverlayOn: Bool
 
   init(id: String, date: Date, thumbnailURL: String, likes: Int, isOverlayOn: Bool = false) {
     self.id = id
@@ -22,7 +22,7 @@ struct ImageCell: Equatable {
     self.isOverlayOn = isOverlayOn
   }
   
-  static func == (lhs: ImageCell, rhs: ImageCell) -> Bool {
+  public static func == (lhs: ImageCell, rhs: ImageCell) -> Bool {
     return lhs.id == rhs.id
     && lhs.date == rhs.date
     && lhs.thumbnailURL == rhs.thumbnailURL

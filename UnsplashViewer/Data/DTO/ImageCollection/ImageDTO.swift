@@ -1,5 +1,5 @@
 //
-//  ImageDto.swift
+//  ImageDTO.swift
 //  UnsplashViewer
 //
 //  Created by Ming on 2022/06/20.
@@ -8,17 +8,17 @@
 import Foundation
 
 struct ImageDTO: Codable {
-  let id: String
-  let date: Date
-  let width: Int
-  let height: Int
-  let colorInHex: String
-  let blurHash: String
-  let likes: Int
-  let description: String?
-  let user: UserDTO
-  let profileImage: ProfileImageURLsDTO?
-  let imageURLs: ImageURLsDTO
+  public let id: String
+  public let date: Date
+  public let width: Int
+  public let height: Int
+  public let colorInHex: String
+  public let blurHash: String
+  public let likes: Int
+  public let description: String?
+  public let user: UserDTO
+  public let profileImage: ProfileImageURLsDTO?
+  public let imageURLs: ImageURLsDTO
   
   enum CodingKeys: String, CodingKey {
     case id

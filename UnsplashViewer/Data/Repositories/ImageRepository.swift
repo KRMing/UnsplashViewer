@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 class ImageRepository {
-  let httpService: HTTPService = DI.injector.find()
+  private let httpService: HTTPService = DI.injector.find()
   
   public func getImages() -> Observable<[ImageCell]> {
     let queryParameters = ["per_page": 30]

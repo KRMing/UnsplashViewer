@@ -11,7 +11,7 @@ import RxCocoa
 import Kingfisher
 
 class ImageCollectionViewCell: UICollectionViewCell {
-  static public let className = String(describing: ImageCollectionViewCell.self)
+  public static let className = String(describing: ImageCollectionViewCell.self)
   
   @IBOutlet weak var view: UIView!
   @IBOutlet weak var imageView: UIImageView!

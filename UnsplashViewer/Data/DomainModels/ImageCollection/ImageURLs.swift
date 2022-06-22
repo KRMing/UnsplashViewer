@@ -8,11 +8,11 @@
 import Foundation
 
 struct ImageURLs {
-  let raw: String
-  let full: String
-  let regular: String
-  let small: String
-  let thumbnail: String
+  public let raw: String
+  public let full: String
+  public let regular: String
+  public let small: String
+  public let thumbnail: String
   
   init(raw: String, full: String, regular: String, small: String, thumbnail: String) {
     self.raw = raw

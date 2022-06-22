@@ -14,8 +14,8 @@ import RxGesture
 class ImageCollectionViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
   
-  let viewModel: ImageCollectionViewModel = DI.injector.find()
-  var disposeBag = DisposeBag()
+  private let viewModel: ImageCollectionViewModel = DI.injector.find()
+  private var disposeBag = DisposeBag()
   
   override func viewDidLoad() {
     super.viewDidLoad()

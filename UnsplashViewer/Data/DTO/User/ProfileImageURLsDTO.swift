@@ -1,5 +1,5 @@
 //
-//  ProfileImageDTO.swift
+//  ProfileImageURLsDTO.swift
 //  UnsplashViewer
 //
 //  Created by Ming on 2022/06/21.
@@ -8,9 +8,9 @@
 import Foundation
 
 struct ProfileImageURLsDTO: Codable {
-  let small: String
-  let medium: String
-  let large: String
+  public let small: String
+  public let medium: String
+  public let large: String
   
   enum CodingKeys: String, CodingKey {
     case small

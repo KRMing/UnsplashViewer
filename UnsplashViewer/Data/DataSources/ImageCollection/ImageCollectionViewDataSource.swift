@@ -1,5 +1,5 @@
 //
-//  ImageCollectionDataSource.swift
+//  ImageCollectionViewDataSource.swift
 //  UnsplashViewer
 //
 //  Created by Ming on 2022/06/17.
@@ -11,15 +11,18 @@ import RxDataSources
 typealias ImageCollectionViewDataSource = RxCollectionViewSectionedAnimatedDataSource<ImageCollectionSectionDataSourceType>
 
 struct ImageCollectionDataSourceType: Equatable, IdentifiableType {
-  let identity: String
-  let image: ImageCell
+  public let identity: String
+  public let image: ImageCell
   
   init(identity: String, image: ImageCell) {
     self.identity = identity
     self.image = image
   }
   
-  static func == (lhs: ImageCollectionDataSourceType, rhs: ImageCollectionDataSourceType) -> Bool {
+  public static func == (
+    lhs: ImageCollectionDataSourceType,
+    rhs: ImageCollectionDataSourceType
+  ) -> Bool {
     return lhs.identity == rhs.identity
     && lhs.image == rhs.image
   }
@@ -28,8 +31,8 @@ struct ImageCollectionDataSourceType: Equatable, IdentifiableType {
 struct ImageCollectionSectionDataSourceType: AnimatableSectionModelType {
   typealias Item = ImageCollectionDataSourceType
   
-  var identity: String
-  var items: [Item]
+  public var identity: String
+  public var items: [Item]
   
   init(identity: String, items: [Item]) {
     self.identity = identity

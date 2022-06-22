@@ -8,10 +8,10 @@
 import Foundation
 
 struct User {
-  let id: String
-  let username: String
-  let name: String
-  let profileImage: ProfileImageURLs
+  public let id: String
+  public let username: String
+  public let name: String
+  public let profileImage: ProfileImageURLs
   
   init(id: String, username: String, name: String, profileImage: ProfileImageURLs) {
     self.id = id

@@ -10,9 +10,8 @@ import RxSwift
 import RxCocoa
 
 class ImageCollectionViewModel {
-  let numberOfCellsPerRow = 3
-  let imageRepository: ImageRepository = DI.injector.find()
-  var disposeBag = DisposeBag()
+  private let imageRepository: ImageRepository = DI.injector.find()
+  private var disposeBag = DisposeBag()
   
   private var imageCellsSubject: BehaviorSubject<[ImageCell]>
   

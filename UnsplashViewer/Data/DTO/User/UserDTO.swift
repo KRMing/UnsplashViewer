@@ -8,10 +8,10 @@
 import Foundation
 
 struct UserDTO: Codable {
-  let id: String
-  let username: String
-  let name: String
-  let profileImage: ProfileImageURLsDTO
+  public let id: String
+  public let username: String
+  public let name: String
+  public let profileImage: ProfileImageURLsDTO
   
   enum CodingKeys: String, CodingKey {
     case id

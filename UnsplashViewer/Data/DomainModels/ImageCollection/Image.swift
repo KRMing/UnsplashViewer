@@ -8,16 +8,16 @@
 import Foundation
 
 struct Image {
-  let id: String
-  let date: Date
-  let width: Int
-  let height: Int
-  let colorInHex: String
-  let blurHash: String
-  let likes: Int
-  let description: String?
-  let user: User
-  let imageURLs: ImageURLs
+  public let id: String
+  public let date: Date
+  public let width: Int
+  public let height: Int
+  public let colorInHex: String
+  public let blurHash: String
+  public let likes: Int
+  public let description: String?
+  public let user: User
+  public let imageURLs: ImageURLs
   
   init(
     id: String,

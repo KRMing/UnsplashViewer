@@ -1,5 +1,5 @@
 //
-//  ProfileImage.swift
+//  ProfileImageURLs.swift
 //  UnsplashViewer
 //
 //  Created by Ming on 2022/06/22.
@@ -8,9 +8,9 @@
 import Foundation
 
 struct ProfileImageURLs {
-  let small: String
-  let medium: String
-  let large: String
+  public let small: String
+  public let medium: String
+  public let large: String
   
   init(small: String, medium: String, large: String) {
     self.small = small
