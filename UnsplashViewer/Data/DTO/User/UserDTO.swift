@@ -11,12 +11,16 @@ struct UserDTO: Codable {
   let id: String
   let username: String
   let name: String
-  let profileImage: ProfileImageDTO
+  let profileImage: ProfileImageURLsDTO
   
   enum CodingKeys: String, CodingKey {
     case id
     case username
     case name
     case profileImage = "profile_image"
+  }
+  
+  public func asDomainModel() -> User {
+    return User(id: id, username: username, name: name, profileImage: profileImage.asDomainModel())
   }
 }

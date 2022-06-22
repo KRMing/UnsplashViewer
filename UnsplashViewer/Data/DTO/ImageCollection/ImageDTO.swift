@@ -17,7 +17,7 @@ struct ImageDTO: Codable {
   let likes: Int
   let description: String?
   let user: UserDTO
-  let profileImage: ProfileImageDTO?
+  let profileImage: ProfileImageURLsDTO?
   let imageURLs: ImageURLsDTO
   
   enum CodingKeys: String, CodingKey {
@@ -49,12 +49,23 @@ struct ImageDTO: Codable {
     self.likes = try keys.decode(Int.self, forKey: .likes)
     self.description = try? keys.decode(String.self, forKey: .description)
     self.user = try keys.decode(UserDTO.self, forKey: .user)
-    self.profileImage = try? keys.decode(ProfileImageDTO.self, forKey: .profileImage)
+    self.profileImage = try? keys.decode(ProfileImageURLsDTO.self, forKey: .profileImage)
     self.imageURLs = try keys.decode(ImageURLsDTO.self, forKey: .imageURLs)
   }
   
   public func asDomainModel() -> Image {
-    return Image(id: id, date: date, imageURL: imageURLs.thumbnail, likes: likes)
+    return Image(
+      id: id,
+      date: date,
+      width: width,
+      height: height,
+      colorInHex: colorInHex,
+      blurHash: blurHash,
+      likes: likes,
+      description: description,
+      user: user.asDomainModel(),
+      imageURLs: imageURLs.asDomainModel()
+    )
   }
 }
 
@@ -71,5 +82,9 @@ struct ImageURLsDTO: Codable {
     case regular
     case small
     case thumbnail = "thumb"
+  }
+  
+  public func asDomainModel() -> ImageURLs {
+    return ImageURLs(raw: raw, full: full, regular: regular, small: small, thumbnail: thumbnail)
   }
 }

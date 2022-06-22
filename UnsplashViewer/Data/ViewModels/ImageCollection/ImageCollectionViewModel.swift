@@ -12,11 +12,37 @@ import RxCocoa
 class ImageCollectionViewModel {
   let numberOfCellsPerRow = 3
   let imageRepository: ImageRepository = DI.injector.find()
+  var disposeBag = DisposeBag()
   
-  var dataSource: ImageCollectionDataSource?
+  private var imageCellsSubject: BehaviorSubject<[ImageCell]>
   
-  public func getImages() -> Driver<[Image]> {
-    return imageRepository.getImages()
-      .asDriver(onErrorJustReturn: [])
+  public var dataSource: ImageCollectionViewDataSource?
+  public var imageCellsDriver: Driver<[ImageCell]>
+  
+  init() {
+    self.imageCellsSubject = BehaviorSubject<[ImageCell]>(value: [ImageCell]())
+    self.imageCellsDriver = self.imageCellsSubject.asDriver(onErrorJustReturn: [ImageCell]())
+    
+    bind()
+  }
+  
+  private func bind() {
+    imageRepository
+      .getImages()
+      .subscribe { [weak self] images in
+        self?.imageCellsSubject.on(.next(images))
+      }
+      .disposed(by: disposeBag)
+  }
+  
+  public func setOverlayOn(for imageId: String) {
+    guard var imageCells = try? imageCellsSubject.value() else { return }
+    
+    guard let index = imageCells.firstIndex(where: { $0.id == imageId }) else { return }
+    
+    let isOverlayOn = imageCells[index].isOverlayOn
+    imageCells[index] = imageCells[index].copyWith(isOverlayOn: !isOverlayOn)
+    
+    imageCellsSubject.on(.next(imageCells))
   }
 }

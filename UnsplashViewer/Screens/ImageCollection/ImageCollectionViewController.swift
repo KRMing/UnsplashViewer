@@ -63,12 +63,12 @@ class ImageCollectionViewController: UIViewController {
   }
   
   private func bind() {
-    viewModel.getImages()
+    viewModel.imageCellsDriver
       .map {
-        [ImageCollectionSection(
+        [ImageCollectionSectionDataSourceType(
           identity: "0",
           items: $0.map {
-            ImageCollection(identity: $0.id, image: $0)
+            ImageCollectionDataSourceType(identity: $0.id, image: $0)
           }
         )]
       }
@@ -89,26 +89,22 @@ extension ImageCollectionViewController: UICollectionViewDelegate {
   }
   
   private func setupDataSource() {
-    viewModel.dataSource = ImageCollectionDataSource {
-      [weak self] dataSource, collectionView, indexPath, model -> UICollectionViewCell in
+    viewModel.dataSource = ImageCollectionViewDataSource {
+      dataSource, collectionView, indexPath, model -> UICollectionViewCell in
       let defaultCell = UICollectionViewCell()
       guard
-        let self = self,
         let cell = collectionView.dequeueReusableCell(
           withReuseIdentifier: String(describing: ImageCollectionViewCell.self),
           for: indexPath
         ) as? ImageCollectionViewCell
       else { return defaultCell }
-    
-      cell.bind(to: model)
-      cell.rx
-        .anyGesture(.longPress())
-        .when(.recognized)
-        .subscribe { _ in
-          let isOverlayOn = !cell.isOverlayOn.value
-          cell.isOverlayOn.accept(isOverlayOn)
+      
+      cell.bind(
+        to: model,
+        touchCallback: { [weak self] in
+          self?.viewModel.setOverlayOn(for: model.image.id)
         }
-        .disposed(by: self.disposeBag)
+      )
       
       return cell
     }
