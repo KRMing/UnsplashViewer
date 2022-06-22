@@ -6,7 +6,15 @@
 //
 
 import Foundation
+import UIKit
 
 class ImageCollectionCoordinator {
-  
+  public func navigateToImageDetailScreen(currentViewController: UIViewController) {
+    let imageDetailViewController = ImageDetailViewController(
+      nibName: "ImageDetailScreen",
+      bundle: nil
+    )
+    currentViewController.navigationController?
+      .pushViewController(imageDetailViewController, animated: true)
+  }
 }

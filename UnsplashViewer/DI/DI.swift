@@ -34,7 +34,10 @@ extension DI {
 
   /// Register coordinators
   private func registerCoordinators() {
-
+    /// Register Image Collection Coordinator
+    container
+      .autoregister(ImageCollectionCoordinator.self, initializer: ImageCollectionCoordinator.init)
+      .inObjectScope(.container)
   }
 
   /// Register view models

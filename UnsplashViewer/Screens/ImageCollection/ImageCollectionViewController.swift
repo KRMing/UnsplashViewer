@@ -15,6 +15,7 @@ class ImageCollectionViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
   
   private let viewModel: ImageCollectionViewModel = DI.injector.find()
+  private let coordinator: ImageCollectionCoordinator = DI.injector.find()
   private var disposeBag = DisposeBag()
   
   override func viewDidLoad() {
@@ -101,7 +102,11 @@ extension ImageCollectionViewController: UICollectionViewDelegate {
       
       cell.bind(
         to: model,
-        touchCallback: { [weak self] in
+        onTap: { [weak self] in
+          guard let self = self else { return }
+          self.coordinator.navigateToImageDetailScreen(currentViewController: self)
+        },
+        onLongPress: { [weak self] in
           self?.viewModel.setOverlayOn(for: model.image.id)
         }
       )

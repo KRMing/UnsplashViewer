@@ -11,6 +11,8 @@
 		3A16378B2862AF1000387534 /* ImageURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A16378A2862AF1000387534 /* ImageURLs.swift */; };
 		3A16378E2862AF2400387534 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A16378D2862AF2400387534 /* User.swift */; };
 		3A1637912862B0CC00387534 /* ProfileImageURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1637902862B0CC00387534 /* ProfileImageURLs.swift */; };
+		3A1637972862BD6A00387534 /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1637952862BD6A00387534 /* ImageDetailViewController.swift */; };
+		3A1637982862BD6A00387534 /* ImageDetailScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A1637962862BD6A00387534 /* ImageDetailScreen.xib */; };
 		3A459542285FF63600C09070 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459541285FF63600C09070 /* ImageCell.swift */; };
 		3A459546286009AE00C09070 /* ImageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459545286009AE00C09070 /* ImageDTO.swift */; };
 		3A4595482860606F00C09070 /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4595472860606F00C09070 /* Interceptor.swift */; };
@@ -18,7 +20,7 @@
 		3A9AC75D285B0D0F00DF008A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9AC75C285B0D0F00DF008A /* SceneDelegate.swift */; };
 		3A9AC764285B0D1000DF008A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A9AC763285B0D1000DF008A /* Assets.xcassets */; };
 		3A9AC771285B0D2F00DF008A /* Splash.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A9AC770285B0D2F00DF008A /* Splash.xib */; };
-		3A9AC774285B0D9800DF008A /* ImageCollection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A9AC773285B0D9800DF008A /* ImageCollection.xib */; };
+		3A9AC774285B0D9800DF008A /* ImageCollectionScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A9AC773285B0D9800DF008A /* ImageCollectionScreen.xib */; };
 		3A9AC776285B0EC300DF008A /* ImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9AC775285B0EC300DF008A /* ImageCollectionViewController.swift */; };
 		3A9AC786285B141600DF008A /* DI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9AC785285B141600DF008A /* DI.swift */; };
 		3A9AC788285B183500DF008A /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9AC787285B183500DF008A /* HTTPService.swift */; };
@@ -40,6 +42,8 @@
 		3A16378A2862AF1000387534 /* ImageURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageURLs.swift; sourceTree = "<group>"; };
 		3A16378D2862AF2400387534 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3A1637902862B0CC00387534 /* ProfileImageURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageURLs.swift; sourceTree = "<group>"; };
+		3A1637952862BD6A00387534 /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
+		3A1637962862BD6A00387534 /* ImageDetailScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageDetailScreen.xib; sourceTree = "<group>"; };
 		3A459541285FF63600C09070 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		3A459545286009AE00C09070 /* ImageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDTO.swift; sourceTree = "<group>"; };
 		3A4595472860606F00C09070 /* Interceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interceptor.swift; sourceTree = "<group>"; };
@@ -49,7 +53,7 @@
 		3A9AC763285B0D1000DF008A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A9AC768285B0D1000DF008A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A9AC770285B0D2F00DF008A /* Splash.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Splash.xib; sourceTree = "<group>"; };
-		3A9AC773285B0D9800DF008A /* ImageCollection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollection.xib; sourceTree = "<group>"; };
+		3A9AC773285B0D9800DF008A /* ImageCollectionScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionScreen.xib; sourceTree = "<group>"; };
 		3A9AC775285B0EC300DF008A /* ImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewController.swift; sourceTree = "<group>"; };
 		3A9AC785285B141600DF008A /* DI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DI.swift; sourceTree = "<group>"; };
 		3A9AC787285B183500DF008A /* HTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
@@ -115,6 +119,15 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		3A1637942862BD4900387534 /* ImageDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3A1637952862BD6A00387534 /* ImageDetailViewController.swift */,
+				3A1637962862BD6A00387534 /* ImageDetailScreen.xib */,
+			);
+			path = ImageDetail;
+			sourceTree = "<group>";
+		};
 		3A4595432860098000C09070 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,13 +166,13 @@
 		3A9AC759285B0D0F00DF008A /* UnsplashViewer */ = {
 			isa = PBXGroup;
 			children = (
-				3AB63AC128614FE900FC7C7C /* Utilities */,
 				3A9AC77C285B135600DF008A /* Application */,
 				3A9AC784285B139100DF008A /* DI */,
 				3A9AC77E285B136700DF008A /* Services */,
 				3A9AC77D285B136200DF008A /* Data */,
 				3AB63AC72861724800FC7C7C /* Coordinators */,
 				3A9AC76E285B0D1E00DF008A /* Screens */,
+				3AB63AC128614FE900FC7C7C /* Utilities */,
 			);
 			path = UnsplashViewer;
 			sourceTree = "<group>";
@@ -167,6 +180,7 @@
 		3A9AC76E285B0D1E00DF008A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				3A1637942862BD4900387534 /* ImageDetail */,
 				3A9AC772285B0D8A00DF008A /* ImageCollection */,
 				3A9AC76F285B0D2500DF008A /* Splash */,
 			);
@@ -184,7 +198,7 @@
 		3A9AC772285B0D8A00DF008A /* ImageCollection */ = {
 			isa = PBXGroup;
 			children = (
-				3A9AC773285B0D9800DF008A /* ImageCollection.xib */,
+				3A9AC773285B0D9800DF008A /* ImageCollectionScreen.xib */,
 				3A9AC775285B0EC300DF008A /* ImageCollectionViewController.swift */,
 				3AF3FB52285C1687009955EA /* ImageCollectionViewCell */,
 			);
@@ -400,9 +414,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A1637982862BD6A00387534 /* ImageDetailScreen.xib in Resources */,
 				3A9AC764285B0D1000DF008A /* Assets.xcassets in Resources */,
 				3A9AC771285B0D2F00DF008A /* Splash.xib in Resources */,
-				3A9AC774285B0D9800DF008A /* ImageCollection.xib in Resources */,
+				3A9AC774285B0D9800DF008A /* ImageCollectionScreen.xib in Resources */,
 				3AF3FB56285C16A5009955EA /* ImageCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,6 +477,7 @@
 				3A16378B2862AF1000387534 /* ImageURLs.swift in Sources */,
 				3AB63ACE2861851D00FC7C7C /* ProfileImageURLsDTO.swift in Sources */,
 				3A9AC788285B183500DF008A /* HTTPService.swift in Sources */,
+				3A1637972862BD6A00387534 /* ImageDetailViewController.swift in Sources */,
 				3AB63AC62861505F00FC7C7C /* HTTPConstants.swift in Sources */,
 				3AF3FB51285C161E009955EA /* ImageCollectionViewModel.swift in Sources */,
 				3A16378E2862AF2400387534 /* User.swift in Sources */,

@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 import Kingfisher
 
 class ImageCollectionViewCell: UICollectionViewCell {
@@ -34,7 +35,11 @@ class ImageCollectionViewCell: UICollectionViewCell {
     disposeBag = DisposeBag()
   }
   
-  public func bind(to data: ImageCollectionDataSourceType, touchCallback: @escaping () -> Void) {
+  public func bind(
+    to data: ImageCollectionDataSourceType,
+    onTap: @escaping () -> Void,
+    onLongPress: @escaping () -> Void
+  ) {
     imageView.kf.setImage(
       with: URL(string: data.image.thumbnailURL),
       options: [.transition(.fade(0.2))]
@@ -45,10 +50,18 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     /// Bind gesture to cell
     self.rx
+      .anyGesture(.tap())
+      .when(.recognized)
+      .subscribe { _ in
+        onTap()
+      }
+      .disposed(by: disposeBag)
+
+    self.rx
       .anyGesture(.longPress())
       .when(.recognized)
       .subscribe { _ in
-        touchCallback()
+        onLongPress()
       }
       .disposed(by: disposeBag)
   }
