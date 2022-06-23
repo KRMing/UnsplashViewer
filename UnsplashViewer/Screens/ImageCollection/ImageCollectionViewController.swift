@@ -11,12 +11,26 @@ import RxCocoa
 import RxDataSources
 import RxGesture
 
+struct ImageCollectionViewControllerArgs {}
+
 class ImageCollectionViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
   
   private let viewModel: ImageCollectionViewModel = DI.injector.find()
   private let coordinator: ImageCollectionCoordinator = DI.injector.find()
   private var disposeBag = DisposeBag()
+  private let args: ImageCollectionViewControllerArgs
+  
+  init(nibName: String, args: ImageCollectionViewControllerArgs) {
+    /// Custom initialization
+    self.args = args
+    
+    super.init(nibName: nibName, bundle: nil)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError(AppConstants.coderInitErrorMessage)
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -91,7 +105,7 @@ extension ImageCollectionViewController: UICollectionViewDelegate {
   
   private func setupDataSource() {
     viewModel.dataSource = ImageCollectionViewDataSource {
-      dataSource, collectionView, indexPath, model -> UICollectionViewCell in
+      dataSource, collectionView, indexPath, data -> UICollectionViewCell in
       let defaultCell = UICollectionViewCell()
       guard
         let cell = collectionView.dequeueReusableCell(
@@ -101,13 +115,18 @@ extension ImageCollectionViewController: UICollectionViewDelegate {
       else { return defaultCell }
       
       cell.bind(
-        to: model,
+        to: data,
         onTap: { [weak self] in
           guard let self = self else { return }
-          self.coordinator.navigateToImageDetailScreen(currentViewController: self)
+          self.coordinator.navigateToImageDetailScreen(
+            self,
+            args: ImageDetailViewControllerArgs(
+              
+            )
+          )
         },
         onLongPress: { [weak self] in
-          self?.viewModel.setOverlayOn(for: model.image.id)
+          self?.viewModel.setOverlayOn(for: data.image.id)
         }
       )
       

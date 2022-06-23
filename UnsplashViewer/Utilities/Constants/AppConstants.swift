@@ -9,4 +9,6 @@ import Foundation
 
 class AppConstants {
   public static let serverDateFormat: String = "yyyy-MM-dd'T'HH:mm:ssZ"
+  
+  public static let coderInitErrorMessage: String = "init(coder:) has NOT been implemented"
 }
