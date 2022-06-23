@@ -83,7 +83,7 @@ class ImageCollectionViewController: UIViewController {
         [ImageCollectionSectionDataSourceType(
           identity: "0",
           items: $0.map {
-            ImageCollectionDataSourceType(identity: $0.id, image: $0)
+            ImageCollectionDataSourceType(identity: $0.image.id, imageCell: $0)
           }
         )]
       }
@@ -121,12 +121,12 @@ extension ImageCollectionViewController: UICollectionViewDelegate {
           self.coordinator.navigateToImageDetailScreen(
             self,
             args: ImageDetailViewControllerArgs(
-              
+              image: data.imageCell.image
             )
           )
         },
         onLongPress: { [weak self] in
-          self?.viewModel.setOverlayOn(for: data.image.id)
+          self?.viewModel.setOverlayOn(for: data.imageCell.image.id)
         }
       )
       

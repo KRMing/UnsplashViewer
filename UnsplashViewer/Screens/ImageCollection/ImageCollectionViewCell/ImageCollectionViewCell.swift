@@ -41,12 +41,12 @@ class ImageCollectionViewCell: UICollectionViewCell {
     onLongPress: @escaping () -> Void
   ) {
     imageView.kf.setImage(
-      with: URL(string: data.image.thumbnailURL),
+      with: URL(string: data.imageCell.image.imageURLs.thumbnail),
       options: [.transition(.fade(0.2))]
     )
     
-    likesLabel.text = "♥︎ \(data.image.likes)"
-    overlayView.isHidden = !data.image.isOverlayOn
+    likesLabel.text = "♥︎ \(data.imageCell.image.likes)"
+    overlayView.isHidden = !data.imageCell.isOverlayOn
     
     /// Bind gestures to cell
     self.rx

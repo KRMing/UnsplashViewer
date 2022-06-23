@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 
 struct ImageDetailViewControllerArgs {
-  
+  let image: Image
 }
 
 class ImageDetailViewController: UIViewController {
@@ -35,7 +35,7 @@ class ImageDetailViewController: UIViewController {
     super.viewDidLoad()
     
     imageView.kf.setImage(
-      with: URL(string: ),
+      with: URL(string: args.image.imageURLs.full),
       options: [.transition(.fade(0.2))]
     )
   }

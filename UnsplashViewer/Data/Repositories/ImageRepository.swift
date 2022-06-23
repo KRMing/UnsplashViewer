@@ -11,7 +11,7 @@ import RxSwift
 class ImageRepository {
   private let httpService: HTTPService = DI.injector.find()
   
-  public func getImages() -> Observable<[ImageCell]> {
+  public func getImages() -> Observable<[Image]> {
     let queryParameters = ["per_page": 30]
     let dtoObs: Observable<[ImageDTO]> = httpService.get(
       path: "/photos",
@@ -21,15 +21,6 @@ class ImageRepository {
     return dtoObs.map { dtos in
       dtos
         .map { $0.asDomainModel() }
-        .map {
-          ImageCell(
-            id: $0.id,
-            date: $0.date,
-            thumbnailURL: $0.imageURLs.thumbnail,
-            likes: $0.likes,
-            isOverlayOn: false
-          )
-        }
     }
   }
 }

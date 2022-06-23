@@ -12,11 +12,11 @@ typealias ImageCollectionViewDataSource = RxCollectionViewSectionedAnimatedDataS
 
 struct ImageCollectionDataSourceType: Equatable, IdentifiableType {
   public let identity: String
-  public let image: ImageCell
+  public let imageCell: ImageCell
   
-  init(identity: String, image: ImageCell) {
+  init(identity: String, imageCell: ImageCell) {
     self.identity = identity
-    self.image = image
+    self.imageCell = imageCell
   }
   
   public static func == (
@@ -24,7 +24,7 @@ struct ImageCollectionDataSourceType: Equatable, IdentifiableType {
     rhs: ImageCollectionDataSourceType
   ) -> Bool {
     return lhs.identity == rhs.identity
-    && lhs.image == rhs.image
+    && lhs.imageCell == rhs.imageCell
   }
 }
 

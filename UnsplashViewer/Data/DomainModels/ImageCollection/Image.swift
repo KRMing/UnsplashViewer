@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Image {
+struct Image: Equatable {
   public let id: String
   public let date: Date
   public let width: Int
@@ -41,5 +41,9 @@ struct Image {
     self.description = description
     self.user = user
     self.imageURLs = imageURLs
+  }
+  
+  public static func == (lhs: Image, rhs: Image) -> Bool {
+    return lhs.id == rhs.id
   }
 }
