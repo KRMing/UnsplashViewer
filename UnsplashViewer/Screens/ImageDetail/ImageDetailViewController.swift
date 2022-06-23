@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxKingfisher
 
 struct ImageDetailViewControllerArgs {
   let image: Image
@@ -14,6 +15,7 @@ struct ImageDetailViewControllerArgs {
 
 class ImageDetailViewController: UIViewController {
   @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
   
   private let viewModel: ImageCollectionViewModel = DI.injector.find()
   private let coordinator: ImageCollectionCoordinator = DI.injector.find()
@@ -34,9 +36,23 @@ class ImageDetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    imageView.kf.setImage(
+    bind()
+  }
+  
+  private func bind() {
+    imageView.kf.rx.setImage(
       with: URL(string: args.image.imageURLs.full),
       options: [.transition(.fade(0.2))]
     )
+    .asDriver(onErrorJustReturn: UIImage())
+    .drive(onNext: { [weak self] image in
+      guard let self = self else { return }
+      let ratio = image.size.height / image.size.width
+      let newHeight = self.imageView.frame.width * ratio
+      self.imageViewHeight.constant = newHeight
+      self.imageView.contentMode = .scaleAspectFill
+      self.view.layoutIfNeeded()
+    })
+    .disposed(by: disposeBag)
   }
 }
