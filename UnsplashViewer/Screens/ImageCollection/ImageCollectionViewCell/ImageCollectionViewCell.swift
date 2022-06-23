@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
-import Kingfisher
+import RxKingfisher
 
 class ImageCollectionViewCell: UICollectionViewCell {
   public static let className = String(describing: ImageCollectionViewCell.self)
@@ -40,10 +40,12 @@ class ImageCollectionViewCell: UICollectionViewCell {
     onTap: @escaping () -> Void,
     onLongPress: @escaping () -> Void
   ) {
-    imageView.kf.setImage(
+    imageView.kf.rx.setImage(
       with: URL(string: data.imageCell.image.imageURLs.thumbnail),
       options: [.transition(.fade(0.2))]
     )
+    .subscribe()
+    .disposed(by: disposeBag)
     
     likesLabel.text = "♥︎ \(data.imageCell.image.likes)"
     overlayView.isHidden = !data.imageCell.isOverlayOn

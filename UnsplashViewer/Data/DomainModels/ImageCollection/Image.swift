@@ -13,7 +13,7 @@ struct Image: Equatable {
   public let width: Int
   public let height: Int
   public let colorInHex: String
-  public let blurHash: String
+  public let blurHash: String?
   public let likes: Int
   public let description: String?
   public let user: User
@@ -25,7 +25,7 @@ struct Image: Equatable {
     width: Int,
     height: Int,
     colorInHex: String,
-    blurHash: String,
+    blurHash: String?,
     likes: Int,
     description: String?,
     user: User,

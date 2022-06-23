@@ -13,7 +13,7 @@ struct ImageDTO: Codable {
   public let width: Int
   public let height: Int
   public let colorInHex: String
-  public let blurHash: String
+  public let blurHash: String?
   public let likes: Int
   public let description: String?
   public let user: UserDTO
@@ -45,7 +45,7 @@ struct ImageDTO: Codable {
     self.width = try keys.decode(Int.self, forKey: .width)
     self.height = try keys.decode(Int.self, forKey: .height)
     self.colorInHex = try keys.decode(String.self, forKey: .colorInHex)
-    self.blurHash = try keys.decode(String.self, forKey: .blurHash)
+    self.blurHash = try? keys.decode(String.self, forKey: .blurHash)
     self.likes = try keys.decode(Int.self, forKey: .likes)
     self.description = try? keys.decode(String.self, forKey: .description)
     self.user = try keys.decode(UserDTO.self, forKey: .user)

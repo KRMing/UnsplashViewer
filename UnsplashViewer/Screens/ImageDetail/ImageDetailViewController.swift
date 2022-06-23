@@ -16,6 +16,10 @@ struct ImageDetailViewControllerArgs {
 class ImageDetailViewController: UIViewController {
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
+  @IBOutlet weak var descriptionLabel: UILabel!
+  @IBOutlet weak var artistLabel: UILabel!
+  @IBOutlet weak var activityIndicatorView: UIView!
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   
   private let viewModel: ImageCollectionViewModel = DI.injector.find()
   private let coordinator: ImageCollectionCoordinator = DI.injector.find()
@@ -36,13 +40,35 @@ class ImageDetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    setupUI()
+    
     bind()
+  }
+  
+  private func setupUI() {
+    func setupDescriptionLabel() {
+      let noDescription = args.image.description == nil
+      descriptionLabel.text = args.image.description ?? "No Description"
+      if noDescription {
+        descriptionLabel.textColor = .gray.withAlphaComponent(0.2)
+      }
+      descriptionLabel.sizeToFit()
+      descriptionLabel.lineBreakMode = .byWordWrapping
+    }
+    
+    func setupArtistLabel() {
+      let username = args.image.user.username
+      let name = args.image.user.name
+      artistLabel.text = "@\(username) | \(name)"
+    }
+    
+    setupDescriptionLabel()
+    setupArtistLabel()
   }
   
   private func bind() {
     imageView.kf.rx.setImage(
-      with: URL(string: args.image.imageURLs.full),
-      options: [.transition(.fade(0.2))]
+      with: URL(string: args.image.imageURLs.regular)
     )
     .asDriver(onErrorJustReturn: UIImage())
     .drive(onNext: { [weak self] image in
@@ -51,7 +77,12 @@ class ImageDetailViewController: UIViewController {
       let newHeight = self.imageView.frame.width * ratio
       self.imageViewHeight.constant = newHeight
       self.imageView.contentMode = .scaleAspectFill
-      self.view.layoutIfNeeded()
+    
+      UIView.animate(withDuration: 0.5, animations: {
+        self.view.layoutIfNeeded()
+      }) { _ in
+        self.activityIndicatorView.isHidden = true
+      }
     })
     .disposed(by: disposeBag)
   }
