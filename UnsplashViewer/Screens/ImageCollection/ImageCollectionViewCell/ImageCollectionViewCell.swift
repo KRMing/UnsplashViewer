@@ -48,9 +48,11 @@ class ImageCollectionViewCell: UICollectionViewCell {
     likesLabel.text = "♥︎ \(data.image.likes)"
     overlayView.isHidden = !data.image.isOverlayOn
     
-    /// Bind gesture to cell
+    /// Bind gestures to cell
     self.rx
-      .anyGesture(.tap())
+      .anyGesture(.tap(configuration: { gestureRecognizer, delegate in
+        delegate.simultaneousRecognitionPolicy = .never
+      }))
       .when(.recognized)
       .subscribe { _ in
         onTap()
@@ -58,8 +60,11 @@ class ImageCollectionViewCell: UICollectionViewCell {
       .disposed(by: disposeBag)
 
     self.rx
-      .anyGesture(.longPress())
-      .when(.recognized)
+      .anyGesture(.longPress(configuration: { gestureRecognizer, delegate in
+        gestureRecognizer.minimumPressDuration = 0.2
+        delegate.simultaneousRecognitionPolicy = .never
+      }))
+      .when(.began)
       .subscribe { _ in
         onLongPress()
       }

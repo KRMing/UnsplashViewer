@@ -198,8 +198,8 @@
 		3A9AC772285B0D8A00DF008A /* ImageCollection */ = {
 			isa = PBXGroup;
 			children = (
-				3A9AC773285B0D9800DF008A /* ImageCollectionScreen.xib */,
 				3A9AC775285B0EC300DF008A /* ImageCollectionViewController.swift */,
+				3A9AC773285B0D9800DF008A /* ImageCollectionScreen.xib */,
 				3AF3FB52285C1687009955EA /* ImageCollectionViewCell */,
 			);
 			path = ImageCollection;
