@@ -35,7 +35,7 @@ class ImageCollectionViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    /// ViewController Initialization
+    /// CollectionView Initialization
     setupCollectionView()
     setupDataSource()
     
@@ -44,6 +44,9 @@ class ImageCollectionViewController: UIViewController {
     
     /// Bind Data
     bind()
+    
+    /// Get Data from API
+    viewModel.getImages()
   }
   
   private func setupUI() {
@@ -73,8 +76,22 @@ class ImageCollectionViewController: UIViewController {
       collectionView.collectionViewLayout = layout
     }
     
+    func setupNavigationBarTestButton() {
+      navigationItem.rightBarButtonItem = UIBarButtonItem(
+        title: "TEST",
+        style: .plain,
+        target: self,
+        action: #selector(onTestButtonTap)
+      )
+    }
+    
     setupNavigationBar()
     setupCollectionViewFlowLayout()
+    setupNavigationBarTestButton()
+  }
+  
+  @objc private func onTestButtonTap() {
+    viewModel.getImages()
   }
   
   private func bind() {
