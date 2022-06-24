@@ -24,7 +24,7 @@ class ImageCollectionViewModel {
   public var currentPage: Int = 0
   public let numberOfItemsPerPage: Int = 30
   public var loadNextPageThreshold: Int {
-    return currentPage * numberOfItemsPerPage - 5
+    return currentPage * numberOfItemsPerPage - 8
   }
   
   init(args: ImageCollectionViewArgs) {
@@ -51,7 +51,7 @@ class ImageCollectionViewModel {
       .getImages(page: page, numberOfItemsPerPage: numberOfItemsPerPage)
       .map {
         $0.map {
-          ImageCell(isOverlayOn: false, image: $0)
+          ImageCell(id: "\($0.id)_\(UUID().uuidString)", isOverlayOn: false, image: $0)
         }
       }
       .subscribe(onNext: { [weak self] imageCells in

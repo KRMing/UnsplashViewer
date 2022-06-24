@@ -97,7 +97,10 @@ class ImageCollectionViewController: UIViewController {
         [ImageCollectionSectionDataSourceType(
           identity: "0",
           items: $0.map {
-            ImageCollectionDataSourceType(identity: $0.image.id, imageCell: $0)
+            ImageCollectionDataSourceType(
+              identity: $0.id,
+              imageCell: $0
+            )
           }
         )]
       }
