@@ -57,16 +57,23 @@
                             <constraint firstItem="Ghe-oJ-nIn" firstAttribute="leading" secondItem="haE-oN-gwh" secondAttribute="leading" id="ryY-KZ-Dkb"/>
                         </constraints>
                     </view>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Cuz-Ag-7Xd">
+                        <rect key="frame" x="140" y="140" width="20" height="20"/>
+                        <color key="color" systemColor="labelColor"/>
+                    </activityIndicatorView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="haE-oN-gwh" secondAttribute="bottom" id="1Kz-AL-MXc"/>
+                <constraint firstItem="Cuz-Ag-7Xd" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="3lp-5v-eXS"/>
                 <constraint firstItem="haE-oN-gwh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="5vh-ni-X0Z"/>
                 <constraint firstAttribute="trailing" secondItem="haE-oN-gwh" secondAttribute="trailing" id="C6n-vE-vaW"/>
                 <constraint firstItem="haE-oN-gwh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Gvm-T3-aRW"/>
+                <constraint firstItem="Cuz-Ag-7Xd" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="UX8-3E-375"/>
             </constraints>
             <connections>
+                <outlet property="activityIndicator" destination="Cuz-Ag-7Xd" id="sMd-PZ-fMC"/>
                 <outlet property="imageView" destination="Ghe-oJ-nIn" id="WFk-HX-pXf"/>
                 <outlet property="likesLabel" destination="yRQ-vU-uLa" id="5b9-Sd-sPE"/>
                 <outlet property="overlayView" destination="f1m-pm-MI1" id="6B2-sh-wYf"/>
@@ -76,6 +83,9 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

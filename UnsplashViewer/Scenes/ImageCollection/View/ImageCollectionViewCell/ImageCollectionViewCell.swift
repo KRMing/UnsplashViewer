@@ -16,6 +16,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var overlayView: UIView!
   @IBOutlet weak var likesLabel: UILabel!
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   
   private var disposeBag = DisposeBag()
   
@@ -23,14 +24,19 @@ class ImageCollectionViewCell: UICollectionViewCell {
     super.awakeFromNib()
     
     /// Initialization code
-    view.layer.borderColor = UIColor.black.cgColor
-    view.layer.borderWidth = 0
-    overlayView.isHidden = true
+    setupUI()
   }
   
   override func prepareForReuse() {
     /// Reset expired subscriptions
     disposeBag = DisposeBag()
+  }
+  
+  private func setupUI() {
+    view.layer.borderColor = UIColor.black.cgColor
+    view.layer.borderWidth = 0
+    overlayView.isHidden = true
+    activityIndicator.isHidden = false
   }
   
   public func bind(
@@ -42,7 +48,12 @@ class ImageCollectionViewCell: UICollectionViewCell {
       with: URL(string: data.imageCell.image.imageURLs.thumbnail),
       options: [.transition(.fade(0.2))]
     )
-    .subscribe()
+    .asCompletable()
+    .subscribe(onCompleted: { [weak self] in
+      self?.activityIndicator.isHidden = true
+    }, onError: { error in
+      // TODO: Error handling
+    })
     .disposed(by: disposeBag)
     
     likesLabel.text = "♥︎ \(data.imageCell.image.likes)"
