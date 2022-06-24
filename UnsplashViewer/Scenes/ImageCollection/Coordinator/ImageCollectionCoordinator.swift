@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 class ImageCollectionCoordinator {
-  public func navigateToImageDetailScreen(
+  public func navigateToImageDetailView(
     _ currentViewController: UIViewController,
-    args: ImageDetailViewControllerArgs
+    args: ImageDetailViewArgs
   ) {
     let imageDetailViewController = ImageDetailViewController(
       nibName: "ImageDetailView",

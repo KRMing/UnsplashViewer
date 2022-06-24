@@ -11,19 +11,16 @@ import RxCocoa
 import RxDataSources
 import RxGesture
 
-struct ImageCollectionViewControllerArgs {}
-
 class ImageCollectionViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
   
-  private let viewModel: ImageCollectionViewModel = DI.injector.find()
+  private let viewModel: ImageCollectionViewModel
   private let coordinator: ImageCollectionCoordinator = DI.injector.find()
   private var disposeBag = DisposeBag()
-  private let args: ImageCollectionViewControllerArgs
   
-  init(nibName: String, args: ImageCollectionViewControllerArgs) {
+  init(nibName: String, args: ImageCollectionViewArgs) {
     /// Custom initialization
-    self.args = args
+    self.viewModel = ImageCollectionViewModel(args: args)
     
     super.init(nibName: nibName, bundle: nil)
   }
@@ -91,7 +88,7 @@ class ImageCollectionViewController: UIViewController {
   }
   
   @objc private func onTestButtonTap() {
-    viewModel.getImages()
+    viewModel.getImages(resetImages: true)
   }
   
   private func bind() {
@@ -107,7 +104,16 @@ class ImageCollectionViewController: UIViewController {
       .drive(collectionView.rx.items(dataSource: viewModel.dataSource!))
       .disposed(by: disposeBag)
     
-    
+    collectionView.rx.willDisplayCell
+      .filter { $0.cell.isKind(of: ImageCollectionViewCell.self) }
+      .map { ($0.cell as! ImageCollectionViewCell, $0.at.item) }
+      .subscribe { [weak self] cell, index in
+        guard let self = self else { return }
+        if index == self.viewModel.loadNextPageThreshold {
+          self.viewModel.getImages()
+        }
+      }
+      .disposed(by: disposeBag)
   }
 }
 
@@ -140,9 +146,9 @@ extension ImageCollectionViewController: UICollectionViewDelegate {
         to: data,
         onTap: { [weak self] in
           guard let self = self else { return }
-          self.coordinator.navigateToImageDetailScreen(
+          self.coordinator.navigateToImageDetailView(
             self,
-            args: ImageDetailViewControllerArgs(
+            args: ImageDetailViewArgs(
               image: data.imageCell.image
             )
           )

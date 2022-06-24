@@ -9,10 +9,6 @@ import UIKit
 import RxSwift
 import RxKingfisher
 
-struct ImageDetailViewControllerArgs {
-  let image: Image
-}
-
 class ImageDetailViewController: UIViewController {
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
@@ -21,14 +17,12 @@ class ImageDetailViewController: UIViewController {
   @IBOutlet weak var activityIndicatorView: UIView!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   
-  private let viewModel: ImageCollectionViewModel = DI.injector.find()
-  private let coordinator: ImageCollectionCoordinator = DI.injector.find()
+  private let viewModel: ImageDetailViewModel
   private var disposeBag = DisposeBag()
-  private let args: ImageDetailViewControllerArgs
   
-  init(nibName: String, args: ImageDetailViewControllerArgs) {
+  init(nibName: String, args: ImageDetailViewArgs) {
     /// Custom initialization
-    self.args = args
+    self.viewModel = ImageDetailViewModel(args: args)
     
     super.init(nibName: nibName, bundle: nil)
   }
@@ -47,8 +41,8 @@ class ImageDetailViewController: UIViewController {
   
   private func setupUI() {
     func setupDescriptionLabel() {
-      let noDescription = args.image.description == nil
-      descriptionLabel.text = args.image.description ?? "No Description"
+      let noDescription = viewModel.image.description == nil
+      descriptionLabel.text = viewModel.image.description ?? "No Description"
       if noDescription {
         descriptionLabel.textColor = .gray.withAlphaComponent(0.2)
       }
@@ -57,8 +51,8 @@ class ImageDetailViewController: UIViewController {
     }
     
     func setupArtistLabel() {
-      let username = args.image.user.username
-      let name = args.image.user.name
+      let username = viewModel.image.user.username
+      let name = viewModel.image.user.name
       artistLabel.text = "@\(username) | \(name)"
     }
     
@@ -68,7 +62,7 @@ class ImageDetailViewController: UIViewController {
   
   private func bind() {
     imageView.kf.rx.setImage(
-      with: URL(string: args.image.imageURLs.regular)
+      with: URL(string: viewModel.image.imageURLs.regular)
     )
     .asDriver(onErrorJustReturn: UIImage())
     .drive(onNext: { [weak self] image in

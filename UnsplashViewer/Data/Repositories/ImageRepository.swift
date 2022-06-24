@@ -11,8 +11,14 @@ import RxSwift
 class ImageRepository {
   private let httpService: HTTPService = DI.injector.find()
   
-  public func getImages() -> Observable<[Image]> {
-    let queryParameters = ["per_page": 30]
+  public func getImages(
+    page: Int,
+    numberOfItemsPerPage: Int
+  ) -> Observable<[Image]> {
+    let queryParameters = [
+      "page": page,
+      "per_page": numberOfItemsPerPage
+    ]
     let dtoObs: Observable<[ImageDTO]> = httpService.get(
       path: "/photos",
       queryParameters: queryParameters
