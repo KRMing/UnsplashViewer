@@ -14,7 +14,7 @@ class ImageCollectionCoordinator {
     args: ImageDetailViewControllerArgs
   ) {
     let imageDetailViewController = ImageDetailViewController(
-      nibName: "ImageDetailScreen",
+      nibName: "ImageDetailView",
       args: args
     )
     currentViewController.navigationController?

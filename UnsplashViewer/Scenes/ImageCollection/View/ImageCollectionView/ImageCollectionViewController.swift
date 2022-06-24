@@ -106,6 +106,8 @@ class ImageCollectionViewController: UIViewController {
       }
       .drive(collectionView.rx.items(dataSource: viewModel.dataSource!))
       .disposed(by: disposeBag)
+    
+    
   }
 }
 
@@ -115,8 +117,11 @@ extension ImageCollectionViewController: UICollectionViewDelegate {
     collectionView.rx.setDelegate(self)
       .disposed(by: disposeBag)
     collectionView.register(
-      UINib(nibName: ImageCollectionViewCell.className, bundle: nil),
-      forCellWithReuseIdentifier: ImageCollectionViewCell.className
+      UINib(
+        nibName: String(describing: ImageCollectionViewCell.self),
+        bundle: nil
+      ),
+      forCellWithReuseIdentifier: String(describing: ImageCollectionViewCell.self)
     )
   }
   

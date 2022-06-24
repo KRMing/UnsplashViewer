@@ -12,8 +12,6 @@ import RxGesture
 import RxKingfisher
 
 class ImageCollectionViewCell: UICollectionViewCell {
-  public static let className = String(describing: ImageCollectionViewCell.self)
-  
   @IBOutlet weak var view: UIView!
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var overlayView: UIView!

@@ -31,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   private func getRootViewController() -> UIViewController {
     let rootViewController = ImageCollectionViewController(
-      nibName: "ImageCollectionScreen",
+      nibName: "ImageCollectionView",
       args: ImageCollectionViewControllerArgs()
     )
     return UINavigationController(rootViewController: rootViewController)
