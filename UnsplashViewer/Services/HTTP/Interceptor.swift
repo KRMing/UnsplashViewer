@@ -8,20 +8,24 @@
 import Foundation
 import Alamofire
 
-class Interceptor: RequestAdapter, RequestRetrier {
-  private let accessToken = HTTPConstants.accessToken
+class Interceptor {
+  private static let accessToken = HTTPConstants.accessToken
   
   // - MARK: Request Adapter
-  func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
-    var urlRequest = urlRequest
-    urlRequest.setValue("Client-ID \(accessToken)", forHTTPHeaderField: "Authorization")
-    urlRequest.setValue("v1", forHTTPHeaderField: "Accept-Version")
+  public struct adapter: RequestAdapter {
+    func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
+      var urlRequest = urlRequest
+      urlRequest.setValue("Client-ID \(accessToken)", forHTTPHeaderField: "Authorization")
+      urlRequest.setValue("v1", forHTTPHeaderField: "Accept-Version")
 
-    return urlRequest
+      return urlRequest
+    }
   }
   
   // - MARK: Request Retrier
-  func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
-    
+  public struct retrier: RequestRetrier {
+    func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
+      
+    }
   }
 }

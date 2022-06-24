@@ -24,7 +24,7 @@ final class HTTPService {
     /// Setup Alamofire Custom Session
     let configuration = URLSessionConfiguration.ephemeral
     self.session = SessionManager(configuration: configuration)
-    self.session.adapter = Interceptor()
+    self.session.adapter = Interceptor.adapter()
   }
   
   public func get<T: Decodable>(
