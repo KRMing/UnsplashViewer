@@ -19,14 +19,13 @@ class ImageRepository {
       "page": page,
       "per_page": numberOfItemsPerPage
     ]
-    let dtoObs: Observable<[ImageDTO]> = httpService.get(
+    let dtos: Observable<[ImageDTO]> = httpService.get(
       path: "/photos",
       queryParameters: queryParameters
     )
     
-    return dtoObs.map { dtos in
-      dtos
-        .map { $0.asDomainModel() }
+    return dtos.map {
+      $0.map { $0.asDomainModel() }
     }
   }
 }

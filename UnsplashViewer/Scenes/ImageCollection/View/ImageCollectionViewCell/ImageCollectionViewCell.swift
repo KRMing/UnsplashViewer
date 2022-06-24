@@ -45,8 +45,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     onLongPress: @escaping () -> Void
   ) {
     imageView.kf.rx.setImage(
-      with: URL(string: data.imageCell.image.imageURLs.thumbnail),
-      options: [.transition(.fade(0.2))]
+      with: URL(string: data.imageCell.image.imageURLs.thumbnail)
     )
     .asCompletable()
     .subscribe(onCompleted: { [weak self] in
