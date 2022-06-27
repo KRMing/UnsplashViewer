@@ -85,4 +85,8 @@ class ImageCollectionViewModel {
     
     imageCellsSubject.on(.next(imageCells))
   }
+  
+  @objc public func refreshPage() {
+    getImages(resetImages: true)
+  }
 }

@@ -73,22 +73,8 @@ class ImageCollectionViewController: UIViewController {
       collectionView.collectionViewLayout = layout
     }
     
-    func setupNavigationBarTestButton() {
-      navigationItem.rightBarButtonItem = UIBarButtonItem(
-        title: "TEST",
-        style: .plain,
-        target: self,
-        action: #selector(onTestButtonTap)
-      )
-    }
-    
     setupNavigationBar()
     setupCollectionViewFlowLayout()
-    setupNavigationBarTestButton()
-  }
-  
-  @objc private func onTestButtonTap() {
-    viewModel.getImages(resetImages: true)
   }
   
   private func bind() {
@@ -105,6 +91,13 @@ class ImageCollectionViewController: UIViewController {
         )]
       }
       .drive(collectionView.rx.items(dataSource: viewModel.dataSource!))
+      .disposed(by: disposeBag)
+    
+    viewModel.imageCellsDriver
+      .do { [weak self] _ in
+        self?.collectionView.refreshControl?.endRefreshing()
+      }
+      .drive()
       .disposed(by: disposeBag)
     
     collectionView.rx.willDisplayCell
@@ -132,6 +125,16 @@ extension ImageCollectionViewController: UICollectionViewDelegate {
       ),
       forCellWithReuseIdentifier: String(describing: ImageCollectionViewCell.self)
     )
+    
+    /// Add refresh control
+    collectionView.refreshControl = UIRefreshControl()
+    collectionView.refreshControl!.rx.controlEvent(.valueChanged)
+      .observeOn(MainScheduler.instance)
+      .delay(RxTimeInterval(1), scheduler: MainScheduler.instance)
+      .subscribe { [weak self] _ -> Void in
+        self?.viewModel.refreshPage()
+      }
+      .disposed(by: disposeBag)
   }
   
   private func setupDataSource() {
