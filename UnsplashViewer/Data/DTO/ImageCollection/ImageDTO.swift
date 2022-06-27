@@ -55,7 +55,7 @@ struct ImageDTO: Codable {
   
   public func asDomainModel() -> Image {
     return Image(
-      id: id,
+      id: String(format: AppConstants.idWithUUIDStringFormat, id, UUID().uuidString),
       date: date,
       width: width,
       height: height,
