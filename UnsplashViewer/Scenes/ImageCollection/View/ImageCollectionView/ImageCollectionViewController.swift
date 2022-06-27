@@ -14,8 +14,8 @@ import RxGesture
 class ImageCollectionViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
   
-  private let viewModel: ImageCollectionViewModel
   private let coordinator: ImageCollectionCoordinator = DI.injector.find()
+  private let viewModel: ImageCollectionViewModel
   private var disposeBag = DisposeBag()
   
   init(nibName: String, args: ImageCollectionViewArgs) {
@@ -145,8 +145,8 @@ extension ImageCollectionViewController: UICollectionViewDelegate {
         ) as? ImageCollectionViewCell
       else { return defaultCell }
       
-      cell.bind(
-        to: data,
+      cell.bind(to: data)
+      cell.bindGestures(
         onTap: { [weak self] in
           guard let self = self else { return }
           self.coordinator.navigateToImageDetailView(

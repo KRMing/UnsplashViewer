@@ -39,11 +39,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     activityIndicator.isHidden = false
   }
   
-  public func bind(
-    to data: ImageCollectionDataSourceType,
-    onTap: @escaping () -> Void,
-    onLongPress: @escaping () -> Void
-  ) {
+  public func bind(to data: ImageCollectionDataSourceType) {
     imageView.kf.rx.setImage(
       with: URL(string: data.imageCell.image.imageURLs.thumbnail)
     )
@@ -57,8 +53,12 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     likesLabel.text = "♥︎ \(data.imageCell.image.likes)"
     overlayView.isHidden = !data.imageCell.isOverlayOn
-    
-    /// Bind gestures to cell
+  }
+  
+  public func bindGestures(
+    onTap: @escaping () -> Void,
+    onLongPress: @escaping () -> Void
+  ) {
     self.rx
       .anyGesture(.tap(configuration: { gestureRecognizer, delegate in
         delegate.simultaneousRecognitionPolicy = .never

@@ -27,7 +27,7 @@ class DI {
 extension DI {
   private func registerDependencies() {
     registerCoordinators()
-    registerViewModels()
+//    registerViewModels()
     registerServices()
     registerRepositories()
   }
@@ -36,23 +36,32 @@ extension DI {
   private func registerCoordinators() {
     /// Register Image Collection Coordinator
     container
-      .autoregister(ImageCollectionCoordinator.self, initializer: ImageCollectionCoordinator.init)
+      .autoregister(
+        ImageCollectionCoordinator.self,
+        initializer: ImageCollectionCoordinator.init
+      )
       .inObjectScope(.container)
   }
 
   /// Register view models
-  private func registerViewModels() {
-    /// Register Image Collection View Model
-    container
-      .autoregister(ImageCollectionViewModel.self, initializer: ImageCollectionViewModel.init)
-      .inObjectScope(.container)
-  }
+//  private func registerViewModels() {
+//    /// Register Image Collection View Model
+//    container
+//      .autoregister(
+//        ImageCollectionViewModel.self,
+//        initializer: ImageCollectionViewModel.init
+//      )
+//      .inObjectScope(.container)
+//  }
 
   /// Register services
   private func registerServices() {
     /// Register HTTP Service
     container
-      .autoregister(HTTPService.self, initializer: HTTPService.init)
+      .autoregister(
+        HTTPService.self,
+        initializer: HTTPService.init
+      )
       .inObjectScope(.container)
   }
 
@@ -60,7 +69,10 @@ extension DI {
   private func registerRepositories() {
     /// Register Image Repository
     container
-      .autoregister(ImageRepository.self, initializer: ImageRepository.init)
+      .autoregister(
+        ImageRepository.self,
+        initializer: ImageRepository.init
+      )
       .inObjectScope(.container)
   }
 }
