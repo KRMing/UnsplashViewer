@@ -85,6 +85,12 @@ struct ImageURLsDTO: Codable {
   }
   
   public func asDomainModel() -> ImageURLs {
-    return ImageURLs(raw: raw, full: full, regular: regular, small: small, thumbnail: thumbnail)
+    return ImageURLs(
+      raw: raw,
+      full: full,
+      regular: regular,
+      small: small,
+      thumbnail: thumbnail
+    )
   }
 }

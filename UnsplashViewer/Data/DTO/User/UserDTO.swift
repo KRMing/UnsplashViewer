@@ -21,6 +21,11 @@ struct UserDTO: Codable {
   }
   
   public func asDomainModel() -> User {
-    return User(id: id, username: username, name: name, profileImage: profileImage.asDomainModel())
+    return User(
+      id: id,
+      username: username,
+      name: name,
+      profileImage: profileImage.asDomainModel()
+    )
   }
 }

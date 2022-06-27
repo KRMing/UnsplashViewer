@@ -24,7 +24,12 @@ class Interceptor {
   
   // - MARK: Request Retrier
   public struct retrier: RequestRetrier {
-    func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
+    func should(
+      _ manager: SessionManager,
+      retry request: Request,
+      with error: Error,
+      completion: @escaping RequestRetryCompletion
+    ) {
       
     }
   }

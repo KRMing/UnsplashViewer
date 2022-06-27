@@ -51,7 +51,15 @@ class ImageCollectionViewModel {
       .getImages(page: page, numberOfItemsPerPage: numberOfItemsPerPage)
       .map {
         $0.map {
-          ImageCell(id: "\($0.id)_\(UUID().uuidString)", isOverlayOn: false, image: $0)
+          ImageCell(
+            id: String(
+              format: AppConstants.idWithUUIDStringFormat,
+              $0.id,
+              UUID().uuidString
+            ),
+            isOverlayOn: false,
+            image: $0
+          )
         }
       }
       .subscribe(onNext: { [weak self] imageCells in
