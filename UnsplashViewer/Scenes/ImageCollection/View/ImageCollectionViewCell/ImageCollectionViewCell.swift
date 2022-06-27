@@ -36,10 +36,11 @@ class ImageCollectionViewCell: UICollectionViewCell {
     view.layer.borderColor = UIColor.black.cgColor
     view.layer.borderWidth = 0
     overlayView.isHidden = true
-    activityIndicator.isHidden = false
   }
   
   public func bind(to data: ImageCollectionDataSourceType) {
+    self.activityIndicator.isHidden = false
+    
     imageView.kf.rx.setImage(
       with: URL(string: data.imageCell.image.imageURLs.thumbnail)
     )
